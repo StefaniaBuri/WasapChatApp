@@ -1,0 +1,7 @@
+{
+  "name": "wasapChat",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
