@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">wasapChat</string>
+    <string name="title_activity_main">wasapChat</string>
+    <string name="package_name">com.niaWasap.ionic.starter</string>
+    <string name="custom_url_scheme">com.niaWasap.ionic.starter</string>
+</resources>

@@ -1,20 +1,50 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title class="title"> WASAPCHAT </ion-title>
+    <div class="avatar">
+      <ion-avatar>
+        <img alt="" src="assets/icon.jpg" />
+      </ion-avatar>
+    </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">WASAPCHAT</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-list lines="none">
+    <ion-item
+      *ngFor="let mensaje of firebaseService.mensajes"
+      class="mensaje"
+      [ngClass]="{derecha: (mensaje.from==from), izquierda: (mensaje.from!=from)}"
+    >
+      <div class="en-lista">
+        <ion-label class="emisor">{{mensaje.from}}</ion-label>
+        <ion-label class="texto">{{mensaje.message}}</ion-label>
+      </div>
+      <ion-label class="time">{{mensaje.time | date: 'hh:mm'}}</ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-item [ngClass]="{hide: registrado}">
+    <ion-input
+      placeholder="Usuario"
+      [(ngModel)]="from"
+      [disabled]="registrado"
+    ></ion-input>
+    <ion-button
+      (click)="registrarUsuario()"
+      [disabled]="from.length==0 || registrado"
+      >Registrar</ion-button
+    >
+  </ion-item>
+  <ion-item>
+    <ion-input placeholder="Mensaje" [(ngModel)]="message"></ion-input>
+    <ion-button (click)="enviar()" [disabled]="message.length==0 || !registrado"
+      ><ion-icon src="assets/paper-plane.svg"></ion-icon
+    ></ion-button>
+  </ion-item>
 </ion-content>
